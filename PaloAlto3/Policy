@@ -1,0 +1,10 @@
+import requests
+
+url = "https://192.168.181.135/api/?type=config&action=get&key=LUFRPT04SU9aa2ttRU0zNjloVzRneVhIWWwydk96SFk9ZWt0UHlxNDBpZW8rOGFzd2NqR2FEK21SUWU5QzBxTEF1VjJYdlU3ZU45R0U4ZStDWkhXRG9SZEQ0MkR0c1hrcQ==&xpath=/config/devices/entry/vsys/entry[@name='vsys1']/rulebase/security"
+
+payload = {}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
