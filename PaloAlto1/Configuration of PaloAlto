@@ -1,0 +1,12 @@
+import requests
+
+url = "https://192.168.181.134/?type=config&action=show&key=LUFRPT1zY210VjYzbTBwR3Biako5SzJxSCtpTkwvSlk9QytyWlc5M2JxQU5EbXEwdFFvVEhtWGdpNnBKOEtUOXduYUhhRUd5aFM5UXBTMEFJWWVWZmhURkhZMlR2NzBjZg=="
+
+payload = {}
+headers = {
+  'Cookie': 'PHPSESSID=4f24b383efb8235b25245a90f13fb059'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
