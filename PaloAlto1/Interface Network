@@ -1,0 +1,13 @@
+import requests
+
+url = "https://192.168.181.134/api/?type=config&action=show&key=LUFRPT1RcysyK1E3QWNJdFh1K08vbklCOWgvRFVDRm89QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1ditNbXVCMHphM1pwMzcxcW5JK0pXVw==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/interface
+"
+
+payload = {}
+headers = {
+  'Cookie': 'PHPSESSID=4e6baa47953ef5eecc227280a24159f0'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
