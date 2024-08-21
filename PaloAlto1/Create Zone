@@ -1,0 +1,44 @@
+import requests
+import json
+
+url = "https://192.168.181.137/api/?type=config&action=set&key=LUFRPT1UdWFGbU5QdlRGNlFwRkF6NmQ1eTJNTHhTNVk9QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1dDhPdkR2aDFwaE1lUTNXM3YrWGR2Vw==&xpath=/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+"
+
+payload = "\r\n   
+<zone>\r\n        
+<entry name=\"LAN\">\r\n    
+<network>\r\n              
+<layer3>\r\n              
+<member>ethernet1/2</member>\r\n      
+</layer3>\r\n            
+</network>\r\n          
+</entry>\r\n          
+<entry name=\"WAN\">\r\n      
+<network>\r\n                
+<layer3>\r\n                
+<member>ethernet1/1</member>\r\n   
+</layer3>\r\n           
+</network>\r\n         
+</entry>\r\n        
+<entry name=\"ipsec-Hub-to-Spoke1\">\r\n   
+<network>\r\n                  
+<layer3>\r\n                     
+<member>tunnel.1</member>\r\n   
+</layer3>\r\n              
+</network>\r\n        
+</entry>\r\n         
+<entry name=\"ipsec-Hub-to-Spoke2\">\r\n      
+<network>\r\n                
+<layer3>\r\n                    
+<member>tunnel.2</member>\r\n         
+</layer3>\r\n         
+</network>\r\n         
+</entry>\r\n      
+</zone>\r\n    "
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
