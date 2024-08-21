@@ -1,0 +1,97 @@
+import requests
+
+url = "https://192.168.181.137/api/?type=config&action=set&key=LUFRPT1UdWFGbU5QdlRGNlFwRkF6NmQ1eTJNTHhTNVk9QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1dDhPdkR2aDFwaE1lUTNXM3YrWGR2Vw==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='VR1']"
+
+payload = "<entry name=\"VR1\">\r\n    <ecmp>\r\n   
+<algorithm>\r\n            <ip-modulo/>\r\n      
+</algorithm>\r\n    </ecmp>\r\n    <protocol>\r\n    
+<bgp>\r\n            <routing-options>\r\n           
+<graceful-restart>\r\n                 
+<enable>yes</enable>\r\n             
+</graceful-restart>\r\n         
+</routing-options>\r\n           
+<enable>no</enable>\r\n      
+</bgp>\r\n   
+<rip>\r\n    
+<enable>no</enable>\r\n       
+</rip>\r\n     
+<ospf>\r\n      
+<enable>yes</enable>\r\n      
+<area>\r\n       
+<entry name=\"0.0.0.0\">\r\n                
+<type>\r\n             
+<normal/>\r\n          
+</type>\r\n       
+<interface>\r\n        
+<entry name=\"ethernet1/1\">\r\n         
+<bfd>\r\n              
+<profile>Inherit-vr-global-setting</profile>\r\n         
+</bfd>\r\n             
+<enable>yes</enable>\r\n                         
+<passive>no</passive>\r\n         
+<gr-delay>10</gr-delay>\r\n               
+<metric>10</metric>\r\n            
+<priority>1</priority>\r\n                
+<hello-interval>10</hello-interval>\r\n          
+<dead-counts>4</dead-counts>\r\n                 
+<retransmit-interval>5</retransmit-interval>\r\n        
+<transit-delay>1</transit-delay>\r\n                
+<link-type>\r\n                         
+<broadcast/>\r\n                        
+</link-type>\r\n                  
+</entry>\r\n               
+</interface>\r\n          
+</entry>\r\n        
+</area>\r\n        
+<router-id>172.21.0.1</router-id>\r\n      
+<reject-default-route>no</reject-default-route>\r\n       
+<allow-redist-default-route>yes</allow-redist-default-route>\r\n     
+</ospf>\r\n    
+<ospfv3>\r\n   
+<enable>no</enable>\r\n   
+</ospfv3>\r\n  
+</protocol>\r\n  
+<interface>\r\n   
+<member>ethernet1/1</member>\r\n   
+<member>ethernet1/2</member>\r\n     
+<member>tunnel.1</member>\r\n    
+<member>tunnel.2</member>\r\n 
+</interface>\r\n   
+<routing-table>\r\n   
+<ip>\r\n          
+<static-route>\r\n     
+<entry name=\"to-lan-Spoke1\">\r\n        
+<bfd>\r\n                   
+<profile>None</profile>\r\n        
+</bfd>\r\n              
+<interface>tunnel.1</interface>\r\n         
+<metric>10</metric>\r\n                 
+<destination>172.21.1.0/24</destination>\r\n              
+<route-table>\r\n                     
+<unicast/>\r\n                 
+</route-table>\r\n          
+</entry>\r\n            
+<entry name=\"to-lan-Spoke2\">\r\n    
+<nexthop>\r\n                   
+<ip-address>10.10.1.2</ip-address>\r\n        
+</nexthop>\r\n                  
+<bfd>\r\n     
+<profile>None</profile>\r\n          
+</bfd>\r\n                 
+<interface>tunnel.2</interface>\r\n         
+<metric>10</metric>\r\n                 
+<destination>172.21.2.0/24</destination>\r\n       
+<route-table>\r\n                     
+<unicast/>\r\n              
+</route-table>\r\n     
+</entry>\r\n        
+</static-route>\r\n     
+</ip>\r\n  
+</routing-table>\r\n</entry>\r\n"
+headers = {
+  'Content-Type': 'application/xml'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
