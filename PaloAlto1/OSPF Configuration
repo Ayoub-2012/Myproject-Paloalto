@@ -1,42 +1,45 @@
 import requests
 
-url = "https://192.168.181.137/api/?type=config&action=set&key=LUFRPT0ycG9mVVpDRW8wN0tLRGo1SCtlMVdwZkxVaE09QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1dEZxVXRCdS82cVN3U0I1NDg2b2UxMA==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='default']/protocol/ospf"
+url = "https://192.168.181.137/api/?type=config&action=set&key={{api_key}}&xpath=/config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='default']/protocol/ospf"
 
-payload = "\r\n        
+payload = "\r\n     
 <ospf>\r\n            
-<enable>yes</enable>\r\n            
-<area>\r\n                
-<entry name=\"0.0.0.0\">\r\n                    
-<type>\r\n                        
-<normal/>\r\n                    
-</type>\r\n                    
-<interface>\r\n                        
-<entry name=\"ethernet1/1\">\r\n                            
-<bfd>\r\n                                 
-<profile>Inherit-vr-global-setting</profile>\r\n                            
-</bfd>\r\n                            
-<enable>yes</enable>\r\n                            
-<passive>no</passive>\r\n                            
-<gr-delay>10</gr-delay>\r\n                            
-<metric>10</metric>\r\n                            
-<priority>1</priority>\r\n                            
-<hello-interval>10</hello-interval>\r\n                            
-<dead-counts>4</dead-counts>\r\n                            
-<retransmit-interval>5</retransmit-interval>\r\n                            
-<transit-delay>1</transit-delay>\r\n                            
-<link-type>\r\n                                
-<broadcast/>\r\n                            
-</link-type>\r\n                        
-</entry>\r\n                    
-</interface>\r\n                
-</entry>\r\n            
-</area>\r\n            
-<router-id>172.21.0.1</router-id>\r\n            
-<reject-default-route>no</reject-default-route>\r\n            
-<allow-redist-default-route>yes</allow-redist-default-route>\r\n        
+<enable>yes</enable>\r\n         
+<area>\r\n         
+<entry name=\"0.0.0.0\">\r\n               
+<type>\r\n                   
+<normal/>\r\n         
+</type>\r\n                 
+<interface>\r\n             
+<entry name=\"ethernet1/1\">\r\n                       
+<bfd>\r\n                             
+<profile>Inherit-vr-global-setting</profile>\r\n                  
+</bfd>\r\n                         
+<enable>yes</enable>\r\n          
+<passive>no</passive>\r\n               
+<gr-delay>10</gr-delay>\r\n             
+<metric>10</metric>\r\n                      
+<priority>1</priority>\r\n              
+<hello-interval>10</hello-interval>\r\n                     
+<dead-counts>4</dead-counts>\r\n              
+<retransmit-interval>5</retransmit-interval>\r\n                   
+<transit-delay>1</transit-delay>\r\n                        
+<link-type>\r\n                            
+<broadcast/>\r\n           
+</link-type>\r\n                      
+</entry>\r\n                  
+</interface>\r\n            
+</entry>\r\n      
+</area>\r\n      
+<router-id>172.21.0.1</router-id>\r\n       
+<reject-default-route>no</reject-default-route>\r\n      
+<allow-redist-default-route>yes</allow-redist-default-route>\r\n    
 </ospf>"
-headers = {'Content-Type': 'text/html'}
+headers = {
+  'Content-Type': 'text/html'
+}
 
 response = requests.request("PUT", url, headers=headers, data=payload)
 
 print(response.text)
+
