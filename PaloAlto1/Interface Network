@@ -1,13 +1,75 @@
 import requests
 
-url = "https://192.168.181.134/api/?type=config&action=show&key=LUFRPT1RcysyK1E3QWNJdFh1K08vbklCOWgvRFVDRm89QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1ditNbXVCMHphM1pwMzcxcW5JK0pXVw==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/interface
-"
+url = "https://192.168.181.137/api/?type=config&action=set&key=LUFRPT1UdWFGbU5QdlRGNlFwRkF6NmQ1eTJNTHhTNVk9QytyWlc5M2JxQU5EbXEwdFFvVEhtYmZyODRHTDlCL0xtZkFHWGF0S1A1dDhPdkR2aDFwaE1lUTNXM3YrWGR2Vw==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/interface"
 
-payload = {}
+payload = "\r\n        
+<interface>\r\n            
+<ethernet>\r\n                
+<entry name=\"ethernet1/1\">\r\n                    
+<layer3>\r\n                        
+<ndp-proxy>\r\n                            
+<enabled>no</enabled>\r\n                        
+</ndp-proxy>\r\n                        
+<sdwan-link-settings>\r\n                            
+<upstream-nat>\r\n                                
+<enable>no</enable>\r\n                                
+<static-ip/>\r\n                            
+</upstream-nat>\r\n                            
+<enable>no</enable>\r\n                        
+</sdwan-link-settings>\r\n                        
+<ip>\r\n                            
+<entry name=\"5.2.0.2/24\"/>\r\n                        
+</ip>\r\n                        
+<lldp>\r\n                            
+<enable>no</enable>\r\n                        
+</lldp>\r\n                        
+\r\n                    
+</layer3>\r\n               
+</entry>\r\n                
+<entry name=\"ethernet1/2\">\r\n                    
+<layer3>\r\n                        
+<ndp-proxy>\r\n                           
+<enabled>no</enabled>\r\n                        
+</ndp-proxy>\r\n                        
+<sdwan-link-settings>\r\n                            
+<upstream-nat>\r\n                                
+<enable>no</enable>\r\n                                
+<static-ip/>\r\n                            
+</upstream-nat>\r\n                         
+<enable>no</enable>\r\n                        
+</sdwan-link-settings>\r\n                       
+<ip>\r\n                            
+<entry name=\"172.21.0.1/24\"/>\r\n                       
+</ip>\r\n                        
+<lldp>\r\n                         
+<enable>no</enable>\r\n                       
+</lldp>\r\n                   
+\r\n                   
+</layer3>\r\n                
+</entry>\r\n         
+</ethernet>\r\n            
+<tunnel>\r\n                
+<units>\r\n                 
+<entry name=\"tunnel.1\">\r\n                        
+<ip>\r\n                            
+<entry name=\"10.10.0.1/30\"/>\r\n                        
+</ip>\r\n                        
+\r\n                  
+</entry>\r\n               
+<entry name=\"tunnel.2\">\r\n                        
+<ip>\r\n                         
+<entry name=\"10.10.1.1/30\"/>\r\n                        
+</ip>\r\n               
+\r\n                   
+</entry>\r\n                
+</units>\r\n            
+</tunnel>\r\n      
+</interface>\r\n  "
 headers = {
-  'Cookie': 'PHPSESSID=4e6baa47953ef5eecc227280a24159f0'
+  'Content-Type': 'application/xml'
 }
 
-response = requests.request("GET", url, headers=headers, data=payload)
+response = requests.request("PUT", url, headers=headers, data=payload)
 
 print(response.text)
+
