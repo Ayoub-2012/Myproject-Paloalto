@@ -1,0 +1,21 @@
+import requests
+
+url = "https://192.168.181.133/api/?type=config&action=set&key=LUFRPT1reU1seVNXaEY5QXFoZDZzNTJBWEE5T2hTOGM9ZWt0UHlxNDBpZW8rOGFzd2NqR2FEeDZQSVVRSGRPS091T3hVek1sRFE5VEY5bWs1TituRjg4aGtJb3hvd1lacA==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile
+"
+
+payload = "       
+<interface-management-profile>\r\n     
+<entry name=\"ping-reponse-pages\">\r\n    
+<http>yes</http>\r\n              
+<https>yes</https>\r\n            
+<ssh>yes</ssh>\r\n               
+<ping>yes</ping>\r\n         
+</entry>\r\n      
+</interface-management-profile>\r\n"
+headers = {
+  'Content-Type': 'application/xml'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
