@@ -1,0 +1,43 @@
+import requests
+
+url = "https://192.168.181.133/api/?type=config&action=set&key=LUFRPT1reU1seVNXaEY5QXFoZDZzNTJBWEE5T2hTOGM9ZWt0UHlxNDBpZW8rOGFzd2NqR2FEeDZQSVVRSGRPS091T3hVek1sRFE5VEY5bWs1TituRjg4aGtJb3hvd1lacA==&xpath=/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+"
+
+payload = "\r\n      
+<zone>\r\n        
+<entry name=\"LAN\">\r\n            
+<network>\r\n                 
+<layer3>\r\n                  
+<member>ethernet1/2</member>\r\n     
+</layer3>\r\n           
+</network>\r\n         
+</entry>\r\n          
+<entry name=\"WAN\">\r\n    
+<network>\r\n               
+<layer3>\r\n                   
+<member>ethernet1/1</member>\r\n     
+</layer3>\r\n              
+</network>\r\n        
+</entry>\r\n          
+<entry name=\"ipsec-vpn-Spoke2-Hub\">\r\n   
+<network>\r\n             
+<layer3>\r\n                 
+<member>tunnel.2</member>\r\n           
+</layer3>\r\n           
+</network>\r\n        
+</entry>\r\n          
+<entry name=\"ipsec-vpn-Spoke2-Spoke1\">\r\n      
+<network>\r\n             
+<layer3>\r\n                     
+<member>tunnel.3</member>\r\n   
+</layer3>\r\n            
+</network>\r\n         
+</entry>\r\n     
+</zone>\r\n"
+headers = {
+  'Content-Type': 'application/xml'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
