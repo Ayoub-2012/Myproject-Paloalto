@@ -1,0 +1,74 @@
+import requests
+
+url = "https://192.168.181.136/api/?type=config&action=set&key=LUFRPT1MaFVYblZNa2tKR1BtMlNtYzY0di9TNVVITzg9dkFVSXdCWkcvUW9abkRyOTlNQ0VMcHVCUGpDSWEzbk91cHNVYnMxY2Z5bFRNODJUTUNkazFaeUZKUk1OV2dZVw==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/interface"
+
+payload = "\r\n   
+<interface>\r\n        
+<ethernet>\r\n         
+<entry name=\"ethernet1/1\">\r\n            
+<layer3>\r\n                 
+<ndp-proxy>\r\n                         
+<enabled>no</enabled>\r\n                      
+</ndp-proxy>\r\n                   
+<sdwan-link-settings>\r\n    
+<upstream-nat>\r\n                       
+<enable>no</enable>\r\n                      
+<static-ip/>\r\n                           
+</upstream-nat>\r\n                      
+<enable>no</enable>\r\n                   
+</sdwan-link-settings>\r\n                  
+<ip>\r\n                            
+<entry name=\"5.2.1.2/24\"/>\r\n   
+</ip>\r\n                       
+<lldp>\r\n                         
+<enable>no</enable>\r\n             
+</lldp>\r\n                      
+<interface-management-profile>ping-reponse-pages</interface-management-profile>\r\n    
+</layer3>\r\n              
+</entry>\r\n             
+<entry name=\"ethernet1/2\">\r\n     
+<layer3>\r\n                  
+<ndp-proxy>\r\n                         
+<enabled>no</enabled>\r\n               
+</ndp-proxy>\r\n                      
+<sdwan-link-settings>\r\n            
+<upstream-nat>\r\n                    
+<enable>no</enable>\r\n               
+<static-ip/>\r\n                          
+</upstream-nat>\r\n                       
+<enable>no</enable>\r\n                     
+</sdwan-link-settings>\r\n                  
+<ip>\r\n                           
+<entry name=\"172.21.1.1/24\"/>\r\n   
+</ip>\r\n                       
+<lldp>\r\n                          
+<enable>no</enable>\r\n                    
+</lldp>\r\n                     
+<interface-management-profile>ping-reponse-pages</interface-management-profile>\r\n      
+</layer3>\r\n             
+</entry>\r\n          
+</ethernet>\r\n       
+<tunnel>\r\n          
+<units>\r\n                
+<entry name=\"tunnel.1\">\r\n     
+<ip>\r\n                        
+<entry name=\"10.10.0.2/30\"/>\r\n      
+</ip>\r\n                      
+<interface-management-profile>ping-reponse-pages</interface-management-profile>\r\n      
+</entry>\r\n                 
+<entry name=\"tunnel.3\">\r\n      
+<ip>\r\n                           
+<entry name=\"10.10.2.1/30\"/>\r\n         
+</ip>\r\n                      
+<interface-management-profile>ping-reponse-pages</interface-management-profile>\r\n    
+</entry>\r\n             
+</units>\r\n         
+</tunnel>\r\n     
+</interface>"
+headers = {
+  'Content-Type': 'application/xml'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
