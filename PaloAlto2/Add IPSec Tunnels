@@ -1,0 +1,40 @@
+import requests
+import json
+
+url = "https://192.168.181.138/api/?type=config&action=set&key=LUFRPT1Fd2dpZzVCVzJIV2FKZnRETVFVWlNuVmFWWDQ9dkFVSXdCWkcvUW9abkRyOTlNQ0VMcHVCUGpDSWEzbk91cHNVYnMxY2Z5bXpnWFBzblZFZ1pDcVpzTDBPWENhMA==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/tunnel/ipsec
+"
+
+payload = "    
+<ipsec>\r\n      
+<entry name=\"ipsec-spoke1-hub\">\r\n       
+<auto-key>\r\n             
+<ike-gateway>\r\n              
+<entry name=\"ike-spoke1-hub\"/>\r\n       
+</ike-gateway>\r\n               
+<ipsec-crypto-profile>crypto-spoke1-to-hub</ipsec-crypto-profile>\r\n      
+</auto-key>\r\n        
+<tunnel-monitor>\r\n            
+<enable>no</enable>\r\n      
+</tunnel-monitor>\r\n           
+<tunnel-interface>tunnel.1</tunnel-interface>\r\n     
+</entry>\r\n          
+<entry name=\"ipsec-Spoke1-Spoke2\">\r\n       
+<auto-key>\r\n             
+<ike-gateway>\r\n                
+<entry name=\"ike-Spoke1-Spoke2\"/>\r\n    
+</ike-gateway>\r\n                
+<ipsec-crypto-profile>crypto-Spoke1-to-Spoke2</ipsec-crypto-profile>\r\n           
+</auto-key>\r\n          
+<tunnel-monitor>\r\n        
+<enable>no</enable>\r\n     
+</tunnel-monitor>\r\n         
+<tunnel-interface>tunnel.3</tunnel-interface>\r\n     
+</entry>\r\n    
+</ipsec>"
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
