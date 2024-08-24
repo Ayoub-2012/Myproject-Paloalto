@@ -1,0 +1,83 @@
+import requests
+
+url = "https://192.168.181.133/api/?type=config&action=set&key=LUFRPT1reU1seVNXaEY5QXFoZDZzNTJBWEE5T2hTOGM9ZWt0UHlxNDBpZW8rOGFzd2NqR2FEeDZQSVVRSGRPS091T3hVek1sRFE5VEY5bWs1TituRjg4aGtJb3hvd1lacA==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/ike/gateway
+"
+
+payload = "      
+<gateway>\r\n     
+<entry name=\"ike-Spoke2-Hub\">\r\n         
+<authentication>\r\n             
+<pre-shared-key>\r\n             
+<key>-AQ==UerGtHGihNM0HYwMY9DxooYmKhg=wC4xtG3Yvs0C7qPhLuebEQ==</key>\r\n        
+</pre-shared-key>\r\n           
+</authentication>\r\n        
+<protocol>\r\n            
+<ikev1>\r\n                
+<dpd>\r\n                    
+<enable>yes</enable>\r\n           
+</dpd>\r\n              
+</ikev1>\r\n                
+<ikev2>\r\n                   
+<dpd>\r\n                       
+<enable>yes</enable>\r\n           
+</dpd>\r\n              
+</ikev2>\r\n               
+<version>ikev2</version>\r\n    
+</protocol>\r\n             
+<protocol-common>\r\n      
+<nat-traversal>\r\n        
+<enable>no</enable>\r\n    
+</nat-traversal>\r\n        
+<fragmentation>\r\n         
+<enable>no</enable>\r\n     
+</fragmentation>\r\n        
+</protocol-common>\r\n         
+<local-address>\r\n           
+<interface>ethernet1/1</interface>\r\n 
+</local-address>\r\n              
+<peer-address>\r\n                
+<ip>5.2.0.2</ip>\r\n             
+</peer-address>\r\n        
+</entry>\r\n         
+<entry name=\"ike-Spoke2-Spoke1\">\r\n            
+<authentication>\r\n               
+<pre-shared-key>\r\n               
+<key>-AQ==/BIAx6eqUhCddiqfAFsUmr7wFHk=O/7w4bdWKdm/5xDeQr8Bow==</key>\r\n    
+</pre-shared-key>\r\n           
+</authentication>\r\n       
+<protocol>\r\n               
+<ikev1>\r\n                      
+<dpd>\r\n                       
+<enable>yes</enable>\r\n          
+</dpd>\r\n                 
+</ikev1>\r\n               
+<ikev2>\r\n                
+<dpd>\r\n                  
+<enable>yes</enable>\r\n   
+</dpd>\r\n                
+</ikev2>\r\n               
+<version>ikev2</version>\r\n    
+</protocol>\r\n             
+<protocol-common>\r\n       
+<nat-traversal>\r\n          
+<enable>no</enable>\r\n         
+</nat-traversal>\r\n             
+<fragmentation>\r\n                 
+<enable>no</enable>\r\n              
+</fragmentation>\r\n               
+</protocol-common>\r\n           
+<local-address>\r\n              
+<interface>ethernet1/1</interface>\r\n       
+</local-address>\r\n           
+<peer-address>\r\n              
+<ip>5.2.1.2</ip>\r\n           
+</peer-address>\r\n        
+</entry>\r\n    
+</gateway>"
+headers = {
+  'Content-Type': 'application/xml'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
