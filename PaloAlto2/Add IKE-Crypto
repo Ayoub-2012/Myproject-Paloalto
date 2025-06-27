@@ -1,4 +1,4 @@
-import requests.
+import requests
 
 url = "https://192.168.181.138/api/?type=config&action=set&key=LUFRPT1Fd2dpZzVCVzJIV2FKZnRETVFVWlNuVmFWWDQ9dkFVSXdCWkcvUW9abkRyOTlNQ0VMcHVCUGpDSWEzbk91cHNVYnMxY2Z5bXpnWFBzblZFZ1pDcVpzTDBPWENhMA==&xpath=/config/devices/entry[@name='localhost.localdomain']/network/ike/crypto-profiles/ike-crypto-profiles
 "
